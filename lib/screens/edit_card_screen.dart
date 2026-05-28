@@ -163,37 +163,38 @@ class _EditCardScreenState
           children: [
 
             // APPBAR
-
-            IconButton(
-            onPressed: () {
-                Navigator.pop(context);
-            },
-
-            icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-            ),
-            ),
-
             Container(
               width: double.infinity,
-
-              color:
-                  const Color(0xFF424242),
-
-              padding:
-                  const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 22,
+              color: const Color(0xFF424242),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 18,
               ),
 
-              child: const Text(
-                'Editar Tarjeta',
+              child: Row(
+                children: [
 
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28,
-                ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                  ),
+
+                  const SizedBox(width: 8),
+
+                  const Text(
+                    'Editar Tarjeta',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                    ),
+                  ),
+                ],
               ),
             ),
 

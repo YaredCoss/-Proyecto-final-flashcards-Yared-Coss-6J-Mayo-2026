@@ -119,6 +119,7 @@ class _ScreenEditFieldScreenState extends State<ScreenEditFieldScreen> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
         backgroundColor: const Color(0xFF424242),
@@ -128,57 +129,68 @@ class _ScreenEditFieldScreenState extends State<ScreenEditFieldScreen> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            const SizedBox(height: 10),
-
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Color(0xFF333333),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // antiguo valor
-            TextField(
-              controller: oldValueController,
-              enabled: false,
-              decoration: InputDecoration(
-                labelText: oldLabel,
-                border: const OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 15),
-
-            // nuevo valor
-            TextField(
-              controller: newValueController,
-              decoration: InputDecoration(
-                labelText: newLabel,
-                border: const OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 30),
-
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFFF8C42),
-                  padding: const EdgeInsets.all(15),
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
                 ),
-                onPressed: _updateField,
-                child: const Text("Confirmar"),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+
+                    const SizedBox(height: 10),
+
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Color(0xFF333333),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    TextField(
+                      controller: oldValueController,
+                      enabled: false,
+                      decoration: InputDecoration(
+                        labelText: oldLabel,
+                        border: const OutlineInputBorder(),
+                      ),
+                    ),
+
+                    const SizedBox(height: 15),
+
+                    TextField(
+                      controller: newValueController,
+                      decoration: InputDecoration(
+                        labelText: newLabel,
+                        border: const OutlineInputBorder(),
+                      ),
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFF8C42),
+                          padding: const EdgeInsets.all(15),
+                        ),
+                        onPressed: _updateField,
+                        child: const Text("Confirmar"),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

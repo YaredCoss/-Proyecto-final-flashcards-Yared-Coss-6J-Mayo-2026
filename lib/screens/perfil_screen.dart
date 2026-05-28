@@ -85,72 +85,75 @@ class _Screen12State extends State<Screen12> {
         // Opcional: también puedes cambiar el color del icono de acciones si las tuvieras
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 20),
 
-            const CircleAvatar(
-              radius: 45,
-              backgroundColor: Colors.grey,
-              child: Icon(Icons.person, size: 50, color: Colors.white),
-            ),
-
-            const SizedBox(height: 30),
-
-            // Username
-            TextField(
-              controller: usernameController,
-              decoration: const InputDecoration(
-                labelText: "Usuario",
-                border: OutlineInputBorder(),
+              const CircleAvatar(
+                radius: 45,
+                backgroundColor: Colors.grey,
+                child: Icon(Icons.person, size: 50, color: Colors.white),
               ),
-            ),
 
-            const SizedBox(height: 15),
+              const SizedBox(height: 30),
 
-            // Email
-            TextField(
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                labelText: "Correo",
-                border: OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 15),
-            
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFFF8C42),
-                  padding: const EdgeInsets.all(15),
+              // Username
+              TextField(
+                controller: usernameController,
+                decoration: const InputDecoration(
+                  labelText: "Usuario",
+                  border: OutlineInputBorder(),
                 ),
-                onPressed: _saveChanges,
-                child: const Text("Guardar cambios"),
               ),
-            ),
 
-            const SizedBox(height: 10),
+              const SizedBox(height: 15),
 
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.red,
-                  side: const BorderSide(color: Colors.red),
-                  padding: const EdgeInsets.all(15),
+              // Email
+              TextField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  labelText: "Correo",
+                  border: OutlineInputBorder(),
                 ),
-                onPressed: () {
-                  Navigator.pushNamed(context, "/confirmar-cierre");
-                },
-                child: const Text("Cerrar sesión"),
               ),
-            ),
-          ],
+
+              const SizedBox(height: 15),
+              
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFFF8C42),
+                    padding: const EdgeInsets.all(15),
+                  ),
+                  onPressed: _saveChanges,
+                  child: const Text("Guardar cambios"),
+                ),
+              ),
+
+              const SizedBox(height: 10),
+
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.red,
+                    side: const BorderSide(color: Colors.red),
+                    padding: const EdgeInsets.all(15),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/confirmar-cierre");
+                  },
+                  child: const Text("Cerrar sesión"),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

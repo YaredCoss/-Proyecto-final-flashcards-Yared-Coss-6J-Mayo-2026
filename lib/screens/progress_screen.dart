@@ -143,22 +143,38 @@ class _ProgressScreenState extends State<ProgressScreen> {
                               ),
                               const SizedBox(height: 18),
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Icon(
                                     Icons.style,
                                     color: Color(0xFFFF8C42),
                                   ),
+
                                   const SizedBox(width: 12),
-                                  Text(
-                                    'Tarjetas creadas: ',
-                                    style: const TextStyle(fontSize: 18),
-                                  ),
-                                  Text(
-                                    '$totalCards',
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      color: Color(0xFFFF8C42),
-                                      fontWeight: FontWeight.bold,
+
+                                  Expanded(
+                                    child: RichText(
+                                      text: TextSpan(
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFF333333),
+                                        ),
+
+                                        children: [
+                                          const TextSpan(
+                                            text:
+                                                'Mazos y tarjetas creados (incluyendo los eliminados): ',
+                                          ),
+
+                                          TextSpan(
+                                            text: '$totalCards',
+                                            style: const TextStyle(
+                                              color: Color(0xFFFF8C42),
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],

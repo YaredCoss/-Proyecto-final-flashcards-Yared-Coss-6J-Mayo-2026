@@ -373,6 +373,81 @@ class _CardWithHoverState extends State<CardWithHover> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
+              Align(
+                alignment: Alignment.topRight,
+                child: GestureDetector(
+
+                  onTap: () async {
+
+                    final confirm =
+                        await showDialog<bool>(
+
+                      context: context,
+
+                      builder: (context) {
+
+                        return AlertDialog(
+
+                          title: const Text(
+                            'Eliminar tarjeta',
+                          ),
+
+                          content: const Text(
+                            '¿Seguro que quieres eliminar esta tarjeta?',
+                          ),
+
+                          actions: [
+
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(
+                                  context,
+                                  false,
+                                );
+                              },
+
+                              child: const Text(
+                                'Cancelar',
+                              ),
+                            ),
+
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(
+                                  context,
+                                  true,
+                                );
+                              },
+
+                              child: const Text(
+                                'Eliminar',
+
+                                style: TextStyle(
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+
+                    if (confirm != true) return;
+
+                    await FirebaseFirestore.instance
+                        .collection('cards')
+                        .doc(widget.cardId)
+                        .delete();
+                  },
+
+                  child: const Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                    size: 20,
+                  ),
+                ),
+              ),
               Text(
                 'Frente:',
                 style: TextStyle(
