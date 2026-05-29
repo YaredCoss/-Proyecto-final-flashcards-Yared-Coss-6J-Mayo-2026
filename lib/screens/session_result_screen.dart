@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'study_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SessionResultScreen extends StatelessWidget {
   final int correctAnswers;
@@ -24,7 +25,7 @@ class SessionResultScreen extends StatelessWidget {
         .collection('decks')
         .doc(deckId)
         .set({
-          'name': deckTitle,
+          'title': deckTitle,
           'reported': true,
           'reportedAt': FieldValue.serverTimestamp(),
         }, SetOptions(merge: true));

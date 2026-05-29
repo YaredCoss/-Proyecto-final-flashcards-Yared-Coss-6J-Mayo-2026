@@ -13,7 +13,9 @@ class Screen17 extends StatelessWidget {
       return snapshot.docs.map((doc) {
         return {
           'id': doc.id,
-          'name': doc['name'] ?? 'Sin nombre',
+          'name': doc.data().toString().contains('title')
+              ? doc['title']
+              : 'Sin nombre',
         };
       }).toList();
     });
